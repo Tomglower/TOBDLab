@@ -1,12 +1,11 @@
 import pandas as pd
 
-# Функция для загрузки данных из CSV файла
+
 def load_data(file_path):
     print("1.1 Загрузка данных из CSV файла.")
     df = pd.read_csv(file_path, delimiter=";")
     return df
 
-# Функция для вывода описания датафрейма
 def describe_dataframe(description, df):
     print(description)
     print(df)
@@ -14,7 +13,7 @@ def describe_dataframe(description, df):
 # Функция для вывода первых 5 строк датафрейма
 def display_first_rows(df):
     print("1.3 Вывод первых 5 строк датафрейма:")
-    print(df.head())
+    print(df.head(5))
 
 # Функция для вывода информации о датафрейме
 def display_dataframe_info(df):
@@ -66,37 +65,44 @@ def display_missing_values(df):
 def drop_rows_with_missing_values(df):
     print("1.13 Удаление строк с пропущенными значениями.")
     df = df.dropna()
+    print(df)
     return df
 
 # Функция для удаления дубликатов строк
 def drop_duplicate_rows(df):
     print("1.14 Удаление дубликатов строк.")
     df = df.drop_duplicates()
+    print(df)
     return df
 
 # Функция для переименования двух произвольных столбцов
 def rename_columns(df, old_names, new_names):
     print("1.15 Переименование столбцов.")
     df.rename(columns=dict(zip(old_names, new_names)), inplace=True)
+    print(df)
     return df
+
 
 # Функция для удаления последнего столбца и вставки его в начало датафрейма
 def move_last_column_to_beginning(df):
     print("1.16 Удаление последнего столбца и вставка его в начало датафрейма.")
     last_column = df.pop(df.columns[-1])
     df.insert(0, last_column.name, last_column)
+    print(df)
     return df
 
 # Функция для удаления последних 20 строк датафрейма
 def drop_last_n_rows(df, n):
     print("1.16 Удаление последних {} строк датафрейма.".format(n))
     df = df.iloc[:-n]
+    print(df)
     return df
 
 # Функция для создания нового датафрейма из первых 10 строк и 3 столбцов
 def create_new_dataframe(df, rows, columns):
     print("1.17 Создание нового датафрейма из первых {} строк и {} столбцов.".format(rows, columns))
     new_df = df.iloc[:rows, :columns]
+    print(new_df)
     return new_df
 
 # Функция для записи датафрейма в файл Excel
